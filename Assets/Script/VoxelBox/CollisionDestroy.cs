@@ -7,17 +7,17 @@ public class CollisionDestroy : MonoBehaviour
     private Collider[] hitColliders;
 
 
-    [SerializeField] private float blastRadius, explosionPower;
-    [SerializeField] private LayerMask explosionLayer;
+    [SerializeField] private float _blastRadius, _explosionPower;
+    [SerializeField] private LayerMask _explosionLayer;
    
-    private Vector3 direction;
+    private Vector3 _direction;
 
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.GetComponent<Voxel>() != null)
         {
 
-            direction = transform.forward;
+            _direction = transform.forward;
             
             Destroy(collision.contacts[0].point);
             
@@ -26,14 +26,14 @@ public class CollisionDestroy : MonoBehaviour
 
     private void Destroy(Vector3 explosionPoint)
     {
-        hitColliders = Physics.OverlapSphere(explosionPoint, blastRadius, explosionLayer);
+        hitColliders = Physics.OverlapSphere(explosionPoint, _blastRadius, _explosionLayer);
 
         foreach (Collider HitCol in hitColliders)
         {
 
-            HitCol.gameObject.GetComponent<Voxel>().DestroyVoxel(direction);
+            HitCol.gameObject.GetComponent<Voxel>().DestroyVoxel(_direction);
             Rigidbody rigidbody = HitCol.attachedRigidbody;
-            rigidbody.AddExplosionForce(explosionPower, transform.position, blastRadius / 10, 1f, ForceMode.Impulse);
+            rigidbody.AddExplosionForce(_explosionPower, transform.position, _blastRadius, 1f, ForceMode.Impulse);
         }
         hitColliders = null;
     }

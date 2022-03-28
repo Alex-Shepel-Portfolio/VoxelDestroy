@@ -25,7 +25,7 @@ public class Voxel : MonoBehaviour
             _meshCombine.DestroyVoxel(this);
             _voxeRb.mass = 30;
             _voxeRb.isKinematic = false;
-            _voxeRb.velocity = directionExplosion * 5;
+            _voxeRb.velocity = directionExplosion * 5f;
             StartCoroutine(Destroy());
         }
     }

@@ -2,8 +2,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
-[RequireComponent(typeof(BoxCollider))]
-
 public class VoxelBox : MonoBehaviour
 {
 
